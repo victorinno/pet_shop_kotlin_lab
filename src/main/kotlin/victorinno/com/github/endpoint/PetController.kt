@@ -7,7 +7,9 @@ import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.*
 import victorinno.com.github.data.Pet
 import victorinno.com.github.data.PetStatus
+import victorinno.com.github.data.Tag
 import victorinno.com.github.repository.PetRepository
+import victorinno.com.github.repository.TagRepository
 import java.net.URI
 import javax.inject.Inject
 import javax.validation.Valid
@@ -22,6 +24,9 @@ open class PetController {
 
     @Inject
     lateinit var petRepository: PetRepository
+
+    @Inject
+    lateinit var tagRepository: TagRepository
 
     @Post
     open fun save(@Body @Valid pet: Pet): MutableHttpResponse<Any>? {
@@ -42,7 +47,7 @@ open class PetController {
     @Delete
     @Path("/{id}")
     fun delete(@PathParam("id") id: Long): MutableHttpResponse<Any>? {
-        val petSaved = petRepository.deleteById(id)
+        petRepository.deleteById(id)
         return return HttpResponse.noContent()
     }
 
@@ -66,4 +71,9 @@ open class PetController {
         return location(pet.id)
     }
 
+    @Get
+    @Path("/tags")
+    fun findAlltags(): MutableIterable<Tag> {
+        return tagRepository.findAll()
+    }
 }

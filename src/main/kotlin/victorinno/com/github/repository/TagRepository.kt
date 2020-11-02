@@ -1,6 +1,8 @@
 package victorinno.com.github.repository
 
-import io.micronaut.data.jpa.repository.JpaRepository
+import io.micronaut.data.annotation.Repository
+import io.micronaut.data.repository.CrudRepository
 import victorinno.com.github.data.Tag
 
-interface TagRepository : JpaRepository<Tag, Long>
+@Repository
+interface TagRepository : CrudRepository<Tag, Long>
