@@ -175,7 +175,9 @@
                     <compilerPlugins>
                         <plugin>jpa</plugin>
                     </compilerPlugins>
-
+                    <pluginOptions>
+                        <option>jpa:annotation=io.micronaut.aop.Around</option>
+                    </pluginOptions>
                 </configuration>
 
                 <executions>
